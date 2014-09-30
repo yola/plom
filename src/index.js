@@ -25,7 +25,9 @@ Plom.extend = function(object) {
 };
 
 Plom.prototype.set = function(key, val) {
-  if(typeof val !== 'undefined') {
+  var argsLength = Array.prototype.slice.call(arguments).length;
+
+  if (argsLength === 2) {
     this.data[key] = val;
     return this;
   }
