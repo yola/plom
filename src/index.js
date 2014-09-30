@@ -25,12 +25,12 @@ Plom.extend = function(object) {
 };
 
 Plom.prototype.set = function(key, val) {
-  if(val) {
-    this.data[key] = val;
+  if (typeof key === 'object') {
+    this.data = key;
     return this;
   }
 
-  this.data = key;
+  this.data[key] = val;
   return this;
 };
 

@@ -58,6 +58,61 @@ describe('Model A Plus', function() {
       plom.set('key', 'val');
       plom.get('key').should.equal('val');
     });
+
+    it('set and get key with a false value', function() {
+      plom.set('key2', false);
+      plom.get('key2').should.equal(false);
+      plom.data.should.deep.equal({ key: 'val', key2: false });
+    });
+
+    it('set and get key with a true value', function() {
+      plom.set('key3', true);
+      plom.get('key3').should.equal(true);
+      plom.data.should.deep.equal({
+        key: 'val',
+        key2: false,
+        key3: true
+      });
+    });
+
+    it('set and get key with an undefined value', function() {
+      plom.set('key4', undefined);
+      (typeof plom.get('key4') === 'undefined').should.be.true;
+      plom.data.should.deep.equal({
+        key: 'val',
+        key2: false,
+        key3: true,
+        key4: undefined
+      });
+    });
+
+    it('set and get key with a null value', function() {
+      plom.set('key5', null);
+      (plom.get('key5') === null).should.be.true;
+      plom.data.should.deep.equal({
+        key: 'val',
+        key2: false,
+        key3: true,
+        key4: undefined,
+        key5: null
+      });
+    });
+
+    it('set (replaces) and get data objects', function() {
+      var newData = {
+        key6: 'testing',
+        key7: 'cool',
+      };
+
+      plom.set(newData);
+      plom.get('key6').should.equal('testing');
+      plom.get('key7').should.equal('cool');
+      plom.data.should.deep.equal({ key6: 'testing', key7: 'cool' });
+    });
+
+    it('get with no arguments returns data object', function() {
+      plom.get().should.deep.equal({ key6: 'testing', key7: 'cool' });
+    });
   });
 
   describe('promise interfacing', function() {
