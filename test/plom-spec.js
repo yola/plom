@@ -58,6 +58,30 @@ describe('Model A Plus', function() {
       plom.set('key', 'val');
       plom.get('key').should.equal('val');
     });
+
+    it('set and get key with a false value', function() {
+      plom.set('key2', false);
+      plom.get('key2').should.equal(false);
+      plom.data.should.deep.equal({ key: 'val', key2: false });
+    });
+
+    it('set and get key with a true value', function() {
+      plom.set('key3', true);
+      plom.get('key3').should.equal(true);
+      plom.data.should.deep.equal({ key: 'val', key2: false, key3: true });
+    });
+
+    it('set (replaces) and get data objects', function() {
+      var newData = {
+        key4: 'testing',
+        key5: 'cool',
+      };
+
+      plom.set(newData);
+      plom.get('key4').should.equal('testing');
+      plom.get('key5').should.equal('cool');
+      plom.data.should.deep.equal({ key4: 'testing', key5: 'cool' });
+    });
   });
 
   describe('promise interfacing', function() {
