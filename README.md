@@ -1,3 +1,5 @@
+![Plom](./Plom.png)
+
 # plom
 
 A super simple model written with promises in mind.
